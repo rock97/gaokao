@@ -8,4 +8,6 @@ public class SchoolName {
     @JsonProperty("school_id")
     private int schoolId;
     private String name;
+    private int f211;
+    private int f985;
 }
