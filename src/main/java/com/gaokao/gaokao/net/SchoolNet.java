@@ -26,15 +26,12 @@ public class SchoolNet extends BaseSeimiCrawler {
 
     @Override
     public void start(Response response) {
-        int aaa = 0;
         try {
             for (int i=1;i<=139;i++){
-                aaa = i;
                 String url = "https://gaokao.chsi.com.cn/sch/search--ss-on,searchType-1,option-qg,start-"+i*20+".dhtml";
                 push(Request.build(url, SchoolNet::getSchool));
                 Thread.sleep(1000);
                 logger.info("school i={}",i);
-
             }
         } catch (Exception e) {
 
@@ -61,8 +58,8 @@ public class SchoolNet extends BaseSeimiCrawler {
         String subjection= document.child(2).text();
         String type= document.child(3).text();
          String academicLevel= document.child(4).text();
-         boolean isStreamUniversity= StringUtils.isEmpty(document.child(0).text())?false:true;
-         boolean isStreamCourse= StringUtils.isEmpty(document.child(0).text())?false:true;
+         boolean isStreamUniversity= StringUtils.isEmpty(document.child(5).text())?false:true;
+         boolean isStreamCourse= StringUtils.isEmpty(document.child(6).text())?false:true;
         School school = new School();
         school.set985(false);
         school.setName(name);
@@ -79,7 +76,7 @@ public class SchoolNet extends BaseSeimiCrawler {
         return school;
     }
     private void bachInstet( List<School> schoolList){
-        schoolService.insertList(schoolList.subList(1,schoolList.size()));
+       // schoolService.insertList(schoolList.subList(1,schoolList.size()));
         logger.info("bachInsert size={}",schoolList.size());
     }
 }

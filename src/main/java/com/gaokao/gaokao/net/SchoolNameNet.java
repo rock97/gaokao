@@ -65,7 +65,7 @@ public class SchoolNameNet extends BaseSeimiCrawler {
             if(score!=null && "1".equals(score.getSchoolName())) {
                 scoreDao.update(schoolName.getName(),schoolName.getSchoolId());
             }
-            schoolDao.update(schoolName.getName(),schoolName.getF985(),schoolName.getF211());
+            schoolDao.update(schoolName.getName(),schoolName.getF985()==2?0:schoolName.getF985(),schoolName.getF211()==2?0:schoolName.getF211());
         }
     }
 }
