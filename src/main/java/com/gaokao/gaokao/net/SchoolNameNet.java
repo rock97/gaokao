@@ -15,11 +15,13 @@ import com.gaokao.gaokao.mapper.ScoreDao;
 import com.gaokao.gaokao.service.SchoolService;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Element;
 import org.seimicrawler.xpath.JXDocument;
 import org.springframework.beans.factory.annotation.Autowired;
 
+@Slf4j
 @Crawler(name = "schoolName")
 public class SchoolNameNet extends BaseSeimiCrawler {
 

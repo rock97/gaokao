@@ -9,12 +9,16 @@ import com.gaokao.gaokao.entity.Score;
 import com.gaokao.gaokao.entity.scoreItem;
 import com.gaokao.gaokao.service.ScoreService;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
 import org.seimicrawler.xpath.JXDocument;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 
 @Crawler(name = "sroce")
+@Slf4j
 public class ScoreNet extends BaseSeimiCrawler {
 
     @Autowired
@@ -27,19 +31,21 @@ public class ScoreNet extends BaseSeimiCrawler {
 
     @Override
     public void start(Response response) {
-        int aaa = 0;
+        Map<Integer,Integer> map = new HashMap<>();
+        map.put(2014,19981);
+        map.put(2015,13593);
+        map.put(2016,22134);
+        map.put(2017,26375);
+        map.put(2018,25977);
         try {
-            for (int i=1;i<=27010;i++){//10060
-                for (int year = 2014; year < 2019; year++) {
+            for (int year = 2014; year < 2019; year++) {
+                for (int i=1;i<=map.get(year);i++){
                     String url = "https://api.eol.cn/gkcx/api/?access_token=&admissions=&central=&department=&dual_class=&f211=&f985=&is_dual_class=&keyword=&local_batch_id=&local_type_id=&page="+i+"&province_id=&school_type=&signsafe=&size=20&type=&uri=apidata/api/gk/score/special&year="+year;
                     push(Request.build(url, ScoreNet::getScore));
-                    Thread.sleep(100);
+                    Thread.sleep(1000);
                 }
-                System.out.println("i = " + i);
             }
         } catch (Exception e) {
-            System.out.println("aaa = " + aaa);
-            e.printStackTrace();
         }
     }
 
