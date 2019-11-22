@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
+import org.apache.ibatis.annotations.Update;
 
 @Mapper
 public interface SchoolDao {
@@ -17,6 +18,9 @@ public interface SchoolDao {
             ")</foreach> </script>"
             )
     @Options(useGeneratedKeys = true, keyProperty = "item.id", keyColumn = "id")
-    public void insertList(List<School> list);
+    void insertList(List<School> list);
+
+    @Update("update school set `985` = #{is985},`211`= #{is211} where name=#{name}")
+    void update(String name,int is985,int is211);
 
 }

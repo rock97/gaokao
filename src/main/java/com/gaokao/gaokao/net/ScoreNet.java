@@ -43,6 +43,8 @@ public class ScoreNet extends BaseSeimiCrawler {
                     String url = "https://api.eol.cn/gkcx/api/?access_token=&admissions=&central=&department=&dual_class=&f211=&f985=&is_dual_class=&keyword=&local_batch_id=&local_type_id=&page="+i+"&province_id=&school_type=&signsafe=&size=20&type=&uri=apidata/api/gk/score/special&year="+year;
                     push(Request.build(url, ScoreNet::getScore));
                     Thread.sleep(1000);
+                    logger.info("sroce year={} i={}",year,i);
+
                 }
             }
         } catch (Exception e) {

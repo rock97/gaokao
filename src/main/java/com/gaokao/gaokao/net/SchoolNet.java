@@ -33,10 +33,11 @@ public class SchoolNet extends BaseSeimiCrawler {
                 String url = "https://gaokao.chsi.com.cn/sch/search--ss-on,searchType-1,option-qg,start-"+i*20+".dhtml";
                 push(Request.build(url, SchoolNet::getSchool));
                 Thread.sleep(1000);
+                logger.info("school i={}",i);
+
             }
         } catch (Exception e) {
-            System.out.println("aaa = " + aaa);
-            e.printStackTrace();
+
         }
     }
 
