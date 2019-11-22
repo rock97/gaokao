@@ -76,7 +76,7 @@ public class SchoolNet extends BaseSeimiCrawler {
         return school;
     }
     private void bachInstet( List<School> schoolList){
-       // schoolService.insertList(schoolList.subList(1,schoolList.size()));
+        schoolService.insertList(schoolList.subList(1,schoolList.size()));
         logger.info("bachInsert size={}",schoolList.size());
     }
 }
