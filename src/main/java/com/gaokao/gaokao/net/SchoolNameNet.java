@@ -9,6 +9,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gaokao.gaokao.entity.School;
 import com.gaokao.gaokao.entity.SchoolName;
+import com.gaokao.gaokao.entity.Score;
 import com.gaokao.gaokao.entity.scoreItem;
 import com.gaokao.gaokao.mapper.ScoreDao;
 import com.gaokao.gaokao.service.SchoolService;
@@ -53,8 +54,11 @@ public class SchoolNameNet extends BaseSeimiCrawler {
         List<SchoolName> parseArray = JSONObject.parseArray(item, SchoolName.class);
 
         for (SchoolName schoolName : parseArray) {
-            System.out.println("schoolName = " + schoolName);
-           // scoreDao.update(schoolName.getName(),schoolName.getSchoolId());
+            Score score = scoreDao.selectBySchoolCode(schoolName.getSchoolId());
+            if("1".equals(score.getSchoolName())) {
+                System.out.println("score = " + score);
+                scoreDao.update(schoolName.getName(),schoolName.getSchoolId());
+            }
         }
     }
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
+import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 @Mapper
@@ -23,5 +24,8 @@ public interface ScoreDao {
 
     @Update("update score_line set school_name = #{name} where school_code=#{code}")
     public void update(String name,int code);
+
+    @Select("select school_code as schoolCode,school_name as schoolName from score_line where school_code = #{code} order by id desc limit 1")
+    Score selectBySchoolCode(int code);
 
 }

@@ -29,12 +29,13 @@ public class ScoreNet extends BaseSeimiCrawler {
     public void start(Response response) {
         int aaa = 0;
         try {
-            for (int i=1;i<=26000;i++){//10060
+            for (int i=1;i<=27010;i++){//10060
                 for (int year = 2014; year < 2019; year++) {
                     String url = "https://api.eol.cn/gkcx/api/?access_token=&admissions=&central=&department=&dual_class=&f211=&f985=&is_dual_class=&keyword=&local_batch_id=&local_type_id=&page="+i+"&province_id=&school_type=&signsafe=&size=20&type=&uri=apidata/api/gk/score/special&year="+year;
                     push(Request.build(url, ScoreNet::getScore));
                     Thread.sleep(100);
                 }
+                System.out.println("i = " + i);
             }
         } catch (Exception e) {
             System.out.println("aaa = " + aaa);
@@ -49,6 +50,9 @@ public class ScoreNet extends BaseSeimiCrawler {
         JSONObject jsonObject = JSONObject.parseObject(sel.get(0).toString());
         String data = jsonObject.getString("data");
         String item = JSONObject.parseObject(data).getString("item");
+        if("[]".equals(item)){
+            return;
+        }
         List<scoreItem> list111 = JSONObject.parseArray(item, scoreItem.class);
 
         List<Score> list = new ArrayList<>();

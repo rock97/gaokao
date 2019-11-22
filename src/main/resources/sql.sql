@@ -35,3 +35,4 @@ CREATE TABLE `score_line` (
      `update_time` timestamp  NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '记录更新时间，默认当前时间',
      PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COMMENT='专业录取分数表';
+create  index idx_school_code on score_line (school_code);
