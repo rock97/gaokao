@@ -10,6 +10,7 @@ public class Score {
     private Integer schoolCode;
     private String schoolName;
     private String studentType;
+    private String localProvinceName;
     private String subjectName;
     private String admissionBatch;
     private int maxScore;

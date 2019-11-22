@@ -17,22 +17,26 @@ CREATE TABLE `school` (
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COMMENT='学校表';
 
+create table score_line
+(
+  id                  bigint unsigned auto_increment comment '主键ID'
+    primary key,
+  school_code         int                                     null comment '院校编码',
+  school_name         varchar(300)  default ''                null comment '院校名称',
+  student_type        varchar(100)  default ''                null comment '考生类型',
+  subject_name        varchar(1000) default ''                null comment '专业名称',
+  year                int           default 0                 null comment '年份',
+  admission_batch     varchar(50)   default ''                null comment '录取批次',
+  max_score           int           default 0                 null comment '最高分',
+  average_score       int           default 0                 null comment '平均分',
+  min_score           int           default 0                 null comment '最低分',
+  other               varchar(255)  default ''                null comment '其它',
+  remark              varchar(255)  default ''                null comment '备注',
+  create_time         timestamp     default CURRENT_TIMESTAMP null comment '记录创建时间，默认当前时间',
+  update_time         timestamp     default CURRENT_TIMESTAMP null on update CURRENT_TIMESTAMP comment '记录更新时间，默认当前时间',
+  local_province_name varchar(100)                            null comment '考生所在地'
+)ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COMMENT='高校专业年份考生地方录取分数线';
 
-CREATE TABLE `score_line` (
-     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-     `school_code` int  NULL COMMENT '院校编码',
-     `school_name` varchar(300)  NULL DEFAULT '' COMMENT '院校名称',
-     `student_type` varchar(100)  NULL DEFAULT '' COMMENT '考生类型',
-     `subject_name` varchar(1000)  NULL DEFAULT '' COMMENT '专业名称',
-     `year` int  NULL DEFAULT 0 COMMENT '年份',
-     `admission_batch` varchar(50)  NULL DEFAULT '' COMMENT '录取批次',
-     `max_score` int  NULL DEFAULT 0 COMMENT '最高分',
-     `average_score` int  NULL DEFAULT 0 COMMENT '平均分',
-     `min_score` int  NULL DEFAULT 0 COMMENT '最低分',
-     `other` varchar(255)  NULL DEFAULT '' COMMENT '其它',
-     `remark` varchar(255)  NULL DEFAULT '' COMMENT '备注',
-     `create_time` timestamp  NULL DEFAULT CURRENT_TIMESTAMP COMMENT '记录创建时间，默认当前时间',
-     `update_time` timestamp  NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '记录更新时间，默认当前时间',
-     PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COMMENT='专业录取分数表';
-create  index idx_school_code on score_line (school_code);
+create index idx_school_code
+  on score_line (school_code);
+

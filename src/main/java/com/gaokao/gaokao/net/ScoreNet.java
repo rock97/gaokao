@@ -72,7 +72,8 @@ public class ScoreNet extends BaseSeimiCrawler {
             s.setSubjectName(scoreItem.getSpname());
             s.setYear(scoreItem.getYear());
             s.setAdmissionBatch(scoreItem.getLocalBatchName());
-            s.setMaxScore(0);
+            s.setLocalProvinceName(scoreItem.getLocalProvinceName());
+            s.setMaxScore("--".equals(scoreItem.getMax())?0:Integer.valueOf(scoreItem.getMax()));
             s.setAverageScore("--".equals(scoreItem.getAverage())?0:Integer.valueOf(scoreItem.getAverage()));
             s.setMinScore("--".equals(scoreItem.getProscore())?0:Integer.valueOf(scoreItem.getProscore()));
             s.setOther("");
