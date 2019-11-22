@@ -18,7 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 
 @Crawler(name = "sroce")
-@Slf4j
 public class ScoreNet extends BaseSeimiCrawler {
 
     @Autowired
@@ -44,7 +43,6 @@ public class ScoreNet extends BaseSeimiCrawler {
                     push(Request.build(url, ScoreNet::getScore));
                     Thread.sleep(1000);
                     logger.info("sroce year={} i={}",year,i);
-
                 }
             }
         } catch (Exception e) {
@@ -80,8 +78,8 @@ public class ScoreNet extends BaseSeimiCrawler {
             s.setRemark("");
             list.add(s);
         }
-        System.out.println("list = " + list);
         if(!CollectionUtils.isEmpty(list)){
+            System.out.println("list = " + list);
             scoreService.insertList(list);
         }
     }
