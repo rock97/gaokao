@@ -6,5 +6,4 @@ import java.util.List;
 public interface ScoreService {
     void insertList(List<Score> list);
     void update(String name,int code);
-
 }

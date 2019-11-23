@@ -25,6 +25,7 @@ create table score_line
   school_name         varchar(300)  default ''                null comment '院校名称',
   student_type        varchar(100)  default ''                null comment '考生类型',
   subject_name        varchar(1000) default ''                null comment '专业名称',
+  local_province_name varchar(100)                            null comment '考生所在地',
   year                int           default 0                 null comment '年份',
   admission_batch     varchar(50)   default ''                null comment '录取批次',
   max_score           int           default 0                 null comment '最高分',
@@ -33,8 +34,7 @@ create table score_line
   other               varchar(255)  default ''                null comment '其它',
   remark              varchar(255)  default ''                null comment '备注',
   create_time         timestamp     default CURRENT_TIMESTAMP null comment '记录创建时间，默认当前时间',
-  update_time         timestamp     default CURRENT_TIMESTAMP null on update CURRENT_TIMESTAMP comment '记录更新时间，默认当前时间',
-  local_province_name varchar(100)                            null comment '考生所在地'
+  update_time         timestamp     default CURRENT_TIMESTAMP null on update CURRENT_TIMESTAMP comment '记录更新时间，默认当前时间'
 )ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COMMENT='高校专业年份考生地方录取分数线';
 
 create index idx_school_code
