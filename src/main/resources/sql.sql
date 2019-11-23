@@ -40,3 +40,23 @@ create table score_line
 create index idx_school_code
   on score_line (school_code);
 
+create table school_line
+(
+  id                  bigint unsigned auto_increment comment '主键ID'
+    primary key,
+  school_code         int                                     null comment '院校编码',
+  school_name         varchar(300)  default ''                null comment '院校名称',
+  student_type        varchar(100)  default ''                null comment '考生类型',
+  year                int           default 0                 null comment '年份',
+  admission_batch     varchar(50)   default ''                null comment '录取批次',
+  average_score       int           default 0                 null comment '平均分',
+  min_score           int           default 0                 null comment '最低分',
+  province_line       int default 0 null comment '省控线',
+  other               varchar(255)  default ''                null comment '其它',
+  remark              varchar(255)  default ''                null comment '备注',
+  create_time         timestamp     default CURRENT_TIMESTAMP null comment '记录创建时间，默认当前时间',
+  update_time         timestamp     default CURRENT_TIMESTAMP null on update CURRENT_TIMESTAMP comment '记录更新时间，默认当前时间',
+  local_province_name varchar(100)                            null comment '考生所在地'
+)ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COMMENT='高校投档分数线';
+
+create INDEX idx_school_code  on school_line(school_code);
