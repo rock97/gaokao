@@ -10,8 +10,8 @@ import org.apache.ibatis.annotations.Update;
 
 @Mapper
 public interface SchoolLineDao {
-    String INSERT_COLUMNS = "school_code,school_name,student_type,province_line,year,admission_batch,average_score,min_score,other,remark";
-    String INSERT_FIELD = "#{item.schoolCode},#{item.schoolName},#{item.studentType},#{item.provinceLine},#{item.year},#{item.admissionBatch},#{item.averageScore},#{item.minScore},#{item.other},#{item.remark}";
+    String INSERT_COLUMNS = "school_code,school_name,student_type,province_line,year,admission_batch,average_score,min_score,other,remark,local_province_name";
+    String INSERT_FIELD = "#{item.schoolCode},#{item.schoolName},#{item.studentType},#{item.provinceLine},#{item.year},#{item.admissionBatch},#{item.averageScore},#{item.minScore},#{item.other},#{item.remark},#{item.localProvinceName}";
 
     @Insert("<script>  insert into school_line ("+INSERT_COLUMNS+") values "+
             "<foreach collection='list'  item='item' index='index' separator=','> ("+
